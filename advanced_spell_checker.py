@@ -10,6 +10,7 @@ import time
 # for i in r:
 #     dictionary_words.append(i)
 
+
 str = input("please enter the word: ")
 
 str = str.replace(" ", "")
@@ -39,9 +40,10 @@ for i in words.words():
     for j in word_check_ngram:
         if j in i:
             intersection += 1
-    union = len(word_check_ngram) + len(i) - 1 - intersection  # here is the change needed to be made for n-gram
-    sim = intersection / union
-    similarity.append(sim)
+    if(len(i) - gram + 1 >= 0) :
+        union = len(word_check_ngram) + len(i) - gram + 1 - intersection  # here is the change needed to be made for n-gram
+        sim = intersection / union
+        similarity.append(sim)
 
 top_20_idx = np.argsort(similarity)[-20:]
 top_words = []
@@ -89,3 +91,4 @@ for i in indices:
     print(top_words[i], ": ", minimum_distance_word)
 
 print("the entire time taken is: ", time_end - time_start)
+
